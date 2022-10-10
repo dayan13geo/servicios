@@ -1,0 +1,143 @@
+<div class="container my-3">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-4 bg-white">
+            <h2>PRODUCTOS</h2>
+            <button type="button" class="btn btn-warning" (click)="openModal2(template2)">Agregar</button>  
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th class="centrado">Id</th>
+                        <th class="centrado">Producto</th>
+                        <th class="centrado">Detalles</th>
+                        <th class="centrado">Stoke</th>
+                        <th class="centrado">Precio</th>
+                        <th class="centrado">Acción</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <tr *ngFor="let pro of productos; index as i">
+                            <td class="centrado">{{ i }}</td>
+                            <td class="centrado">{{ pro.name}}</td>
+                            <td class="centrado">{{pro.descriptionn}} </td>
+                            <td class="centrado">{{pro.stoke}}</td>
+                            <td class="centrado">{{pro.Precio}}</td>
+                            <td class="centrado ">
+                                <button  (click)="openModal1(template1,i)" class="btn btn-primary">Ver</button>
+                                <button type="button" class="btn btn-success" (click)="openModal(template,i)">Actualizar</button> 
+                                <button type="button" class="btn btn-danger" (click)="deleteProductos(i)">Eliminar</button>      
+                            </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form id="form1" name="form1" #form="ngForm">
+        <h3 class="title-description">Actualizar datos producción</h3>
+        <div class="mb-3">
+            <label for="detalle" class="form-label title-description">Detalles de producto</label>
+            <input id="input1" name="input1" type="text" required [(ngModel)]="d_descripcionn"  class="form-control" id="detalle" placeholder="Detalle"  />           
+        </div>
+        <div class="mb-3">
+            <label for="Nombre" class="form-label title-description">Nombre de producto</label>
+            <input id="input2" name="input2" type="text" required [(ngModel)]="d_nombre"  class="form-control" id="Nombre" placeholder="Nombre" autofocus />
+        </div>
+        <div class="mb-3">
+            <label for="Stoke" class="form-label title-description">Stoke</label>
+            <input id="input3" name="input3" type="text" required [(ngModel)]="d_Stoke"  class="form-control" id="Stoke" placeholder="Stoke"  />
+            
+        </div>
+        <div class="mb-3">
+            <label for="Precio" class="form-label title-description">Precio</label>
+            <input id="input4" name="input4" type="text" required [(ngModel)]="d_Precio" class="form-control" id="Precio" placeholder="Precio"  />
+        </div>
+    </form>
+        <button type="button" class="btn btn-danger " aria-label="Close" >
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+            Cancelar   
+        </button>
+        <button type="button" class="btn btn-success"  (click)="actComprobante1()">Guardar</button>
+ 
+  </div>
+</ng-template>
+
+<ng-template #template1>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body overflow-auto">
+        <form id="form2" class="overflow-auto" name="form2" #form="ngForm">
+            <h3 class="title-description">Detalles del Producto</h3>
+            <div class="mb-3">
+                <label class="form-label title-description">{{d_descripcionn}}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label title-description">{{d_nombre}}</label>   
+            </div>
+            <div class="mb-3">
+                <label class="form-label title-description">{{d_Stoke}}</label>   
+            </div>
+            <div class="mb-3">
+                <label class="form-label title-description">{{d_Precio}}</label>   
+            </div>
+        </form> 
+      </div>
+        <button type="button" class="btn btn-danger" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+            Cerrar
+        </button>
+
+  </ng-template>
+
+
+
+
+<ng-template #template2>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form id="form1" name="form1" #form="ngForm">
+        <h3 class="title-description">Agregar Productos</h3>
+        <div class="mb-3">
+            <label for="detalle" class="form-label title-description">Detalles de producto</label>
+            <input id="input1" name="input1" type="text" required [(ngModel)]="d_descripcionn"  class="form-control" id="detalle" placeholder="Detalle"  />           
+        </div>
+        <div class="mb-3">
+            <label for="Nombre" class="form-label title-description">Nombre de producto</label>
+            <input id="input2" name="input2" type="text" required [(ngModel)]="d_nombre"  class="form-control" id="Nombre" placeholder="Nombre" autofocus />
+        </div>
+        <div class="mb-3">
+            <label for="Stoke" class="form-label title-description">Stoke</label>
+            <input id="input3" name="input3" type="text" required [(ngModel)]="d_Stoke"  class="form-control" id="Stoke" placeholder="Stoke"  />
+            
+        </div>
+        <div class="mb-3">
+            <label for="Precio" class="form-label title-description">Precio</label>
+            <input id="input4" name="input4" type="text" required [(ngModel)]="d_Precio" class="form-control" id="Precio" placeholder="Precio"  />
+        </div>
+    </form>
+        <button type="button" class="btn btn-danger " aria-label="Close" >
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+            Cancelar   
+        </button>
+        <button type="button" class="btn btn-warning " (click)="addProducto()">Agregar</button>
+ 
+  </div>
+</ng-template>
