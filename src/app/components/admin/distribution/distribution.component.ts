@@ -1,4 +1,4 @@
-import { Component, TemplateRef, OnInit} from '@angular/core';
+import { Component, TemplateRef, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Product } from 'src/app/model/product.model';
 import { StoreService } from 'src/app/services/store.service';
@@ -9,12 +9,19 @@ import { StoreService } from 'src/app/services/store.service';
   styleUrls: ['./distribution.component.scss']
 })
 export class DistributionComponent implements OnInit {
+
+ @Input() products: Product[] = [
+    
+  ];
  
+
  // constructor() {}
   constructor( private storeService: StoreService , 
     public modalService: BsModalService){
       this.products = storeService.products;
     }
+
+    
   ngOnInit(): void {
   }
   modalRef?: BsModalRef;
@@ -48,10 +55,9 @@ export class DistributionComponent implements OnInit {
 
 
 
+  @Output() pressButton = new EventEmitter();
 
-  products: Product[] = [
-    
-];
+
 actComprobante(): void{
     
   const replace: any ={
@@ -62,6 +68,7 @@ actComprobante(): void{
     porcentaje: this.d_porcentaje,
     estado: this.d_estado
   }
+  this.pressButton.emit();
   this.products.splice(this.posicionActualizar,1,replace);
   this.d_descripcion="";
   this.d_ruta="";

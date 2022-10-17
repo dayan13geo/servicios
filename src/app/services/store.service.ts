@@ -8,7 +8,7 @@ import { Productos } from '../modelp/prodctos.model';
 export class StoreService {
   productos: Productos[] = [{
     name: "parquet",
-    descriptionn: "hola munfod",
+    descriptionn: "madera fina",
     stoke: 100,
     Precio: 1000,
   }]

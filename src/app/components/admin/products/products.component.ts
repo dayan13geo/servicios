@@ -9,7 +9,7 @@ import { StoreService } from 'src/app/services/store.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  productos: Productos[] = [];
+   productos: Productos[] = [];
 
   constructor( private storeService: StoreService ,     
     public modalService: BsModalService) { 
