@@ -1,6 +1,7 @@
 import { TemplateRef, Component, OnInit } from '@angular/core';
 import { Productos } from 'src/app/modelp/prodctos.model';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-products',
@@ -8,8 +9,14 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  productos: Productos[] = [];
 
-  constructor( public modalService: BsModalService) { }
+  constructor( private storeService: StoreService ,     
+    public modalService: BsModalService) { 
+      this.productos = storeService.productos;
+    }
+
+    
 ngOnInit(): void {
   }
   modalRef?: BsModalRef;
@@ -44,12 +51,7 @@ ngOnInit(): void {
   d_Precio: number = 0;
   title = 'angular-tarea';
 
-  productos: Productos[] = [{
-    name: "parquet",
-    descriptionn: "hola munfod",
-    stoke: 100,
-    Precio: 1000,
-  }]
+
 
   addProducto(): void{
     const newProducto ={
