@@ -10,7 +10,7 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class DistributionComponent implements OnInit {
 
- products: Product[] = [
+ @Input() products: Product[] = [
     
   ];
  
@@ -55,7 +55,7 @@ export class DistributionComponent implements OnInit {
 
 
 
- 
+ @Output() pressButoon = new EventEmitter();
 
 
 actComprobante(): void{
@@ -70,6 +70,7 @@ actComprobante(): void{
   }
 
   this.products.splice(this.posicionActualizar,1,replace);
+  this.pressButoon.emit;
   this.d_descripcion="";
   this.d_ruta="";
   this.d_nombre="";
